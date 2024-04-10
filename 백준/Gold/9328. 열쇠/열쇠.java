@@ -55,28 +55,21 @@ public class Main {
 								arr[i][j] = '1';
 							}else if(arr[i][j] == '$') {
 								answer++;
-							//	System.out.println("$$$"+i+" "+j);
 								q.offer(new int[] {i,j});
 								arr[i][j]= '1';
 							}else if(Character.isUpperCase(arr[i][j])){
-							//	System.out.println("@@"+arr[i][j]);
 								if(canOpen(i,j)) {
 									q.offer(new int[] {i,j});
 									arr[i][j]= '1';
-								//	System.out.println(i+" "+j+"can open");
 								}else {
-									// 다시 보기
-								//	System.out.println("Cant open!");
 									doors.add(new Node(arr[i][j],i,j));
 								}
 								
 							}else if(Character.isLowerCase(arr[i][j])){
 								
 								for(Node door: doors) {
-								//	System.out.println(Character.toLowerCase(door.alphabet)+" "+arr[i][j]+" "+(Character.toLowerCase(door.alphabet) == arr[i][j]) );
 									if(Character.toLowerCase(door.alphabet) == arr[i][j]) {
 										//지금 주운 키랑 doors랑 맞으면
-									//	System.out.println("can open");
 										q.offer(new int[] {door.x,door.y});
 										arr[door.x][door.y]='1';
 									}
@@ -89,11 +82,8 @@ public class Main {
 					}
 				}
 			
-			//System.out.println(keys.keySet());
-			//System.out.println("while start");
 			while(!q.isEmpty()) {
 				int[] cur = q.poll();
-				//System.out.println(Arrays.toString(cur)+" "+arr[cur[0]][cur[1]]);
 				for (int d = 0; d < 4; d++) {
 					int nx = cur[0] + dx[d];
 					int ny = cur[1] + dy[d];
@@ -101,15 +91,12 @@ public class Main {
 					if(arr[nx][ny] == '*' || arr[nx][ny] == '1') continue;
 					if(arr[nx][ny]== '$') {
 						answer ++;
-					//	System.out.println("$$$"+nx+" "+ny);
 						q.offer(new int[] {nx,ny});
 						arr[nx][ny]= '1';
 					}else if(arr[nx][ny] == '.') {
 						q.offer(new int[] {nx,ny});
 						arr[nx][ny] = '1';
 					}else if(Character.isLowerCase(arr[nx][ny])) {
-				//		System.out.println("lower"+nx+" "+ny);
-						
 						for(Node door: doors) {
 							if(Character.toLowerCase(door.alphabet) == arr[nx][ny]) {
 								//지금 주운 키랑 doors랑 맞으면
@@ -126,7 +113,6 @@ public class Main {
 							q.offer(new int[] {nx,ny});
 							arr[nx][ny]= '1';
 						}else {
-							// 다시 보기
 							doors.add(new Node(arr[nx][ny],nx,ny));
 						}
 					}
@@ -138,9 +124,7 @@ public class Main {
 	}
 	
 	static boolean canOpen(int x, int y) { // 문 왔을때 
-		//System.out.println("canopen function");
 		for(Character key : keys.keySet()) {
-		//	System.out.println(key);
 			if(Character.toUpperCase(key) == arr[x][y]) {
 				return true;
 			}
