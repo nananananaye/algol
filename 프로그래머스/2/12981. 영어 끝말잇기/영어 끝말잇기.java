@@ -14,19 +14,21 @@ class Solution {
             }else{
                 flag = false;
                 ans = i;
+                answer[0] = ans%n +1;
+            answer[1] = ans/n+1;
                 break;
             }
         }
        // System.out.println(map);
        // System.out.println(ans);
-        if(flag) return answer;
-        if(ans <n){
-            answer[0]= ans+1;
-            answer[1]= 1;
-        }else{
-            answer[0] = ans%n +1;
-            answer[1] = ans/n+1;
-            }
+        // if(flag) return answer;
+        // if(ans <n){
+        //     answer[0]= ans+1;
+        //     answer[1]= 1;
+        // }else{
+        //     answer[0] = ans%n +1;
+        //     answer[1] = ans/n+1;
+        //     }
         return answer;
     }
 }
